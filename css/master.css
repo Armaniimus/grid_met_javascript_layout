@@ -25,30 +25,9 @@ body {
 /*layout styles*/
 [id*=articlebox-] article {
     box-sizing: border-box;
-    float: left;
+    /*float: left;*/
     display: block;
-    width: 100%;
-    padding: 10px 10px;
+    /*width: 100%;*/
+    /*padding: 10px 10px;*/
     border: 1px solid red;
-}
-
-/* For tablets: */
-@media only screen and (min-width: 600px) {
-    [id*=articlebox-] article {
-        width: 50%;
-    }
-}
-
-/* For desktop: */
-@media only screen and (min-width: 768px) {
-    [id*=articlebox-] article {
-        width: 33.33%;
-    }
-}
-
-/* for huge screens: */
-@media only screen and (min-width: 1000px) {
-    [id*=articlebox-] article {
-        width: 25%;
-    }
 }

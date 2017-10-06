@@ -57,44 +57,79 @@ function testForColumns() {
     // gets width of the page
     const pWidth = window.innerWidth;
 
-    if (pWidth < 600) {
-        // set localCol
-        const localCol = 1;
+    let count =1;
+    let countI;
+    while ( count < 100 && countI != "end") {
 
-        // compare if the col is diffrent since the last check to save processing cycles
-        if (globalColumns == localCol) {
-            return localCol;
+        id = count;
+        count++;
 
+        if (document.getElementById('articlebox-' + id) == null ) {
+            countI = "end";
         } else {
-            return localCol;
-        }
+            const box = document.getElementById('articlebox-' + id).children
 
-    } else if (pWidth < 768) {
+            for (let i = 0; i < box.length; i++) {
+                box[i].style.cssFloat = "left";
+                box[i].style.padding = "10px 10px";
+            }
 
-        const localCol = 2
-        if (globalColumns == localCol) {
-            return localCol;
+            if (pWidth < 600) {
+                // set localCol
+                const localCol = 1;
 
-        } else {
-            return localCol;
-        }
+                // compare if the col is diffrent since the last check to save processing cycles
+                if (globalColumns != localCol) {
 
-    } else if (pWidth < 1000) {
-        const localCol = 3
-        if (globalColumns == localCol) {
-            return localCol;
+                    for (let i = 0; i < box.length; i++) {
+                        box[i].style.width = "100%";
+                    }
+                    return localCol;
 
-        } else {
-            return localCol;
-        }
+                } else {
+                    return localCol;
+                }
 
-    } else {
-        const localCol = 4
-        if (globalColumns == localCol) {
-            return localCol;
+            } else if (pWidth < 768) {
 
-        } else {
-            return localCol;
+                const localCol = 2
+                if (globalColumns != localCol) {
+
+                    for (let i = 0; i < box.length; i++) {
+                        box[i].style.width = "50%";
+                    }
+                    return localCol;
+
+                } else {
+                    return localCol;
+                }
+
+            } else if (pWidth < 1000) {
+                const localCol = 3
+                if (globalColumns != localCol) {
+
+                    for (let i = 0; i < box.length; i++) {
+                        box[i].style.width = "33.33%";
+                    }
+                    return localCol;
+
+                } else {
+                    return localCol;
+                }
+
+            } else {
+                const localCol = 4
+                if (globalColumns != localCol) {
+
+                    for (let i = 0; i < box.length; i++) {
+                        box[i].style.width = "25%";
+                    }
+                    return localCol;
+
+                } else {
+                    return localCol;
+                }
+            }
         }
     }
 }
@@ -149,7 +184,8 @@ function getHTMLHeights(elements, start, end, mode) {
 function setHTMLHeights(elements, start, end, heightHead, heightMain) {
     for (let i = start; i <= end; i++) {
 
-        if (typeof elements != 'undefined') {
+        //tests if an element exists and before adding height
+        if (elements[i] != null && typeof elements[i] != "undefined") {
             elements[i].children[1].style.height = heightHead + "px";
             elements[i].children[1].style.height = heightMain + "px";
         }
