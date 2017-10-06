@@ -1,3 +1,14 @@
+/*************************************************************************
+ this program is free to use on the following 2 conditions
+ 1. I am not responsible for any damage resulted by use of this program
+ 2. its required to let the following notification stand
+
+ copyright owned by
+ Armaniimus-webdevelopment
+ website:http://Armaniimus-webdevelopment.nl/
+**************************************************************************/
+
+
 1.  This article layout grid works with article boxes.
     with at max 12 articles inside them.
 
@@ -19,6 +30,5 @@
     or have a severe uneven result at the bottom or having holes inside your layout.
     and it is responsive and that can not be said in most other solutions.
 
-*this program is owned by Armaniimus-webdevelopment
 
     
