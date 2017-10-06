@@ -82,7 +82,7 @@ function setStyles(columns) {
 
     let count = 1;
     let countI;
-    while (count < 999 && countI != "end") {
+    while (count < 500 && countI != "end") {
 
         if (document.getElementById('articlebox-' + count) == null ) {
             console.log("end");
