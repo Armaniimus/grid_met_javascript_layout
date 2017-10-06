@@ -33,18 +33,13 @@ function setGlobalChildren() {
                 globalChildren[num][ii] = {head:"", main:""};
                 globalChildren[num][ii].head = getHeight(child.children[ii].children[0]);
                 globalChildren[num][ii].main = getHeight(child.children[ii].children[1]);
-
-                // console.log(child.children)
-                console.log(globalChildren)
             }
             i++;
         }
     }
 }
-
+// gets the height of the specified element
 function getHeight(element) {
-
-    //tests the height of the specified element
     let height = window.getComputedStyle(element, null);
     height = height.getPropertyValue("height");
     height = parseInt(height);
@@ -57,77 +52,68 @@ function testForColumns() {
     // gets width of the page
     const pWidth = window.innerWidth;
 
-    let count =1;
+    if (pWidth < 600) {
+
+        // set localCol
+        const localCol = 1;
+        return localCol;
+
+    } else if (pWidth < 768) {
+
+        // set localCol
+        const localCol = 2;
+        return localCol;
+
+    } else if (pWidth < 1000) {
+
+        // set localCol
+        const localCol = 3;
+        return localCol;
+
+    } else {
+
+        // set localCol
+        const localCol = 4;
+        return localCol;
+    }
+}
+
+function setStyles(columns) {
+
+    let count = 1;
     let countI;
-    while ( count < 100 && countI != "end") {
+    while (count < 999 && countI != "end") {
 
-        id = count;
-        count++;
-
-        if (document.getElementById('articlebox-' + id) == null ) {
+        if (document.getElementById('articlebox-' + count) == null ) {
+            console.log("end");
             countI = "end";
         } else {
-            const box = document.getElementById('articlebox-' + id).children
+            const box = document.getElementById('articlebox-' + count).children
 
             for (let i = 0; i < box.length; i++) {
                 box[i].style.cssFloat = "left";
                 box[i].style.padding = "10px 10px";
             }
+            count++;
 
-            if (pWidth < 600) {
-                // set localCol
-                const localCol = 1;
-
-                // compare if the col is diffrent since the last check to save processing cycles
-                if (globalColumns != localCol) {
-
-                    for (let i = 0; i < box.length; i++) {
-                        box[i].style.width = "100%";
-                    }
-                    return localCol;
-
-                } else {
-                    return localCol;
+            if (columns == 1) {
+                for (let i = 0; i < box.length; i++) {
+                    box[i].style.width = "100%";
                 }
 
-            } else if (pWidth < 768) {
-
-                const localCol = 2
-                if (globalColumns != localCol) {
-
-                    for (let i = 0; i < box.length; i++) {
-                        box[i].style.width = "50%";
-                    }
-                    return localCol;
-
-                } else {
-                    return localCol;
+            } else if (columns == 2) {
+                for (let i = 0; i < box.length; i++) {
+                    box[i].style.width = "50%";
                 }
 
-            } else if (pWidth < 1000) {
-                const localCol = 3
-                if (globalColumns != localCol) {
-
-                    for (let i = 0; i < box.length; i++) {
-                        box[i].style.width = "33.33%";
-                    }
-                    return localCol;
-
-                } else {
-                    return localCol;
+            } else if (columns == 3) {
+                for (let i = 0; i < box.length; i++) {
+                    box[i].style.width = "33.33%";
                 }
 
-            } else {
-                const localCol = 4
-                if (globalColumns != localCol) {
-
-                    for (let i = 0; i < box.length; i++) {
-                        box[i].style.width = "25%";
-                    }
-                    return localCol;
-
-                } else {
-                    return localCol;
+            } else if (columns == 4) {
+                for (let i = 0; i < box.length; i++) {
+                    box[i].style.width = "25%";
                 }
             }
         }
@@ -198,6 +184,10 @@ function controlHeights() {
     const localColumns = testForColumns();
 
     if (globalColumns != localColumns) {
+
+        //set globalBoxStyles
+        setStyles(localColumns);
+
         for (var num = 0; num < globalChildren.length; num++) {
 
             // set globalColumns
@@ -207,31 +197,41 @@ function controlHeights() {
             const savedChildren = globalChildren[num];
             const id = num + 1;
             const htmlChildren = document.getElementById('articlebox-' + id).children;
-            const changeArray = setChangeArray(localColumns);
+            const changeArray = setChangeArray();
             let start;
             let end;
             let suppVar;
 
+            console.log(localColumns);
+            console.log(globalColumns);
             console.log(changeArray);
 
+            //loops trough the rows of a articlebox
             for (var i = 0; i < changeArray.length; i++) {
                 // set start variable
                 start = changeArray[i][0];
 
                 // set end variable
-                suppVar = changeArray[i].length -1;
+                suppVar = changeArray[i].length - 1;
                 end = changeArray[i][suppVar];
 
+
+                // error start
+
+                //get variables
                 const setHeadHeight = getHTMLHeights(savedChildren, start, end, "head");
                 const setMainHeight = getHTMLHeights(savedChildren, start, end, "main");
+
+                // set variables in the html dom
                 setHTMLHeights(htmlChildren, start, end, setHeadHeight, setMainHeight);
+
+                // error end
             }
         }
     }
 }
 
 setGlobalChildren();
-console.log(["height_globalChildren", globalChildren]);
 
 controlHeights();
 window.addEventListener("resize", controlHeights);
