@@ -19,4 +19,6 @@
     or have a severe uneven result at the bottom or having holes inside your layout.
     and it is responsive and that can not be said in most other solutions.
 
+*this program is owned by Armaniimus-webdevelopment
+
     

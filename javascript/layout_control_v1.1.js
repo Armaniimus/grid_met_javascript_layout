@@ -1,3 +1,10 @@
+/////////////////////////////
+//Copyrighted by
+//Armaniimus-webdevelopment
+/////////////////////////////
+
+
+
 // tests width to define how many columns there are inside the html
 let globalColumns = 0;
 let globalChildren;
