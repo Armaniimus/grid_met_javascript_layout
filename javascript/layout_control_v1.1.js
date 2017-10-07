@@ -44,7 +44,8 @@ function setGlobalChildren() {
 
                 globalChildren[num][ii] = {head:"", main:""};
                 globalChildren[num][ii].head = getHeight(child.children[ii].children[0]);
-                globalChildren[num][ii].main = getHeight(child.children[ii].children[1]);
+                globalChildren[num][ii].main = getHeight(child.children[ii].children[1].children[0]);
+                globalChildren[num][ii].main = globalChildren[num][ii].main + 30;
             }
             i++;
         }
