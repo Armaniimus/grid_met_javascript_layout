@@ -24,7 +24,7 @@ function setGlobalChildren() {
     globalChildren = [];
     let num;
 
-    while (i !== "end" || i < 10) {
+    while (i !== "end" || i < 500) {
 
         // gets content boxes
         const id = "articlebox-" + (i);
@@ -101,7 +101,7 @@ function setStyles(columns) {
             console.log("end");
             countI = "end";
         } else {
-            const box = document.getElementById('articlebox-' + count).children
+            const box = document.getElementById('articlebox-' + count).children;
 
             for (let i = 0; i < box.length; i++) {
                 box[i].style.cssFloat = "left";
@@ -159,25 +159,27 @@ function setChangeArray() {
 function getHTMLHeights(elements, start, end, mode) {
     let height = 0;
     for (let i = start; i <= end; i++) {
+
+        let testHeight;
         if (typeof elements[i] != 'undefined') {
 
             //gets height based on the mode used and take the heighest height of the provided set
             if (mode == "head") {
-                const testHeight = elements[i].head;
+                testHeight = elements[i].head;
                 if (testHeight > height) {
                     height = testHeight;
                 }
 
             } else if (mode == "main") {
-                const testHeight = elements[i].main;
+                testHeight = elements[i].main;
                 if (testHeight > height) {
                     height = testHeight;
                 }
             }
 
-            return height;
         }
     }
+    return height;
 }
 
 function setHTMLHeights(elements, start, end, heightHead, heightMain) {
@@ -196,51 +198,50 @@ function controlHeights() {
     // test amount of columns
     const localColumns = testForColumns();
 
-    if (globalColumns != localColumns) {
+    //set globalBoxStyles
+    setStyles(localColumns);
 
-        //set globalBoxStyles
-        setStyles(localColumns);
+    for (var num = 0; num < globalChildren.length; num++) {
 
-        for (var num = 0; num < globalChildren.length; num++) {
+        // set globalColumns
+        setGlobalColumns(localColumns);
 
-            // set globalColumns
-            setGlobalColumns(localColumns);
+        //set variables
+        const savedChildren = globalChildren[num];
+        const id = num + 1;
+        const htmlChildren = document.getElementById('articlebox-' + id).children;
+        const changeArray = setChangeArray();
+        let start;
+        let end;
+        let suppVar;
 
-            //set variables
-            const savedChildren = globalChildren[num];
-            const id = num + 1;
-            const htmlChildren = document.getElementById('articlebox-' + id).children;
-            const changeArray = setChangeArray();
-            let start;
-            let end;
-            let suppVar;
+        //loops trough the rows of a articlebox
+        for (var i = 0; i < changeArray.length; i++) {
+            // set start variable
+            start = changeArray[i][0];
 
-            //loops trough the rows of a articlebox
-            for (var i = 0; i < changeArray.length; i++) {
-                // set start variable
-                start = changeArray[i][0];
+            // set end variable
+            suppVar = changeArray[i].length - 1;
+            end = changeArray[i][suppVar];
 
-                // set end variable
-                suppVar = changeArray[i].length - 1;
-                end = changeArray[i][suppVar];
+            //get variables
+            const setHeadHeight = getHTMLHeights(savedChildren, start, end, "head");
+            const setMainHeight = getHTMLHeights(savedChildren, start, end, "main");
 
-
-                // error start
-
-                //get variables
-                const setHeadHeight = getHTMLHeights(savedChildren, start, end, "head");
-                const setMainHeight = getHTMLHeights(savedChildren, start, end, "main");
-
-                // set variables in the html dom
-                setHTMLHeights(htmlChildren, start, end, setHeadHeight, setMainHeight);
-
-                // error end
-            }
+            // set variables in the html dom
+            setHTMLHeights(htmlChildren, start, end, setHeadHeight, setMainHeight);
         }
     }
 }
 
 setGlobalChildren();
-
 controlHeights();
+// console.log(globalChildren)
+
+setGlobalChildren();
+controlHeights();
+// console.log(globalChildren)
+
+
+window.addEventListener("resize", setGlobalChildren);
 window.addEventListener("resize", controlHeights);
