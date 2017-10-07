@@ -50,6 +50,7 @@ function setGlobalChildren() {
         }
     }
 }
+
 // gets the height of the specified element
 function getHeight(element) {
     let height = window.getComputedStyle(element, null);
@@ -213,10 +214,6 @@ function controlHeights() {
             let start;
             let end;
             let suppVar;
-
-            console.log(localColumns);
-            console.log(globalColumns);
-            console.log(changeArray);
 
             //loops trough the rows of a articlebox
             for (var i = 0; i < changeArray.length; i++) {
