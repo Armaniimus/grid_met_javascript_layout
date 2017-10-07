@@ -236,12 +236,9 @@ function controlHeights() {
 
 setGlobalChildren();
 controlHeights();
-// console.log(globalChildren)
 
 setGlobalChildren();
 controlHeights();
-// console.log(globalChildren)
-
 
 window.addEventListener("resize", setGlobalChildren);
 window.addEventListener("resize", controlHeights);
