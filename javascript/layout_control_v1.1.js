@@ -188,7 +188,7 @@ function setHTMLHeights(elements, start, end, heightHead, heightMain) {
 
         //tests if an element exists and before adding height
         if (elements[i] != null && typeof elements[i] != "undefined") {
-            elements[i].children[1].style.height = heightHead + "px";
+            elements[i].children[0].style.height = heightHead + "px";
             elements[i].children[1].style.height = heightMain + "px";
         }
     }
