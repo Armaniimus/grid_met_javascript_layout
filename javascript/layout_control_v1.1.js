@@ -107,6 +107,7 @@ function setStyles(columns) {
             for (let i = 0; i < box.length; i++) {
                 box[i].style.cssFloat = "left";
                 box[i].style.padding = "10px 10px";
+                // box[i].children[1].children[0].style.backgroundColor = "green";
             }
             count++;
 

@@ -4,7 +4,31 @@
         <meta charset="utf-8">
         <title>grid_test Layout</title>
         <!-- <link rel="stylesheet" href="css/grid.css"> -->
+        <link rel="stylesheet" href="css/grid-v1.0.css">
         <link rel="stylesheet" href="css/master.css">
+        <style media="screen">
+            /*.price {
+                width:49%;
+                float: left;
+                overflow: auto;
+            }*/
+            /*.article-content div p {
+                width:100%;
+                float: left;
+            }*/
+            /*.article-content .hi{
+                width: 100%;
+                clear: both;
+            }*/
+            /*[id*=articlebox-] {
+                background-color: green;
+            }
+            [id*=articlebox-] p,
+            [id*=articlebox-] div
+            {
+                background-color: green;
+            }*/
+        </style>
     </head>
     <body>
         <div class="wrapper">
@@ -21,8 +45,8 @@
                             <h3>myhead</h3>
                         </header>
                         <div class="article-content">
-                            <div>
-                                <p>
+                            <div class="col-12">
+                                <p class="col-12">
                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
                                     Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
                                     Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim.
@@ -30,7 +54,10 @@
                                     In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
                                     Nullam dictum felis eu pede mollis
                                 </p>
-                                <div>
+                                <div class="float col-6">
+                                    14,95
+                                </div>
+                                <div class="float col-6">
                                     14,95
                                 </div>
                             </div>
@@ -337,7 +364,7 @@
             </footer>
         </div>
 
-        <script src="javascript/layout_height_organizer_v0.9.js"></script>
+        <script src="javascript/layout_height_organizer_v1.0.js"></script>
         <script src="javascript/layout_control_v1.1.js"></script>
 
 
